@@ -81,7 +81,7 @@ function draw() {
 	push();
 	noStroke();
 	fill(0, 0, 255);
-	ellipse(0, 0, 1, 1);
+	ellipse(0, 0, 0.1, 0.1);
 	// push();
 	// noFill();
 	// stroke(255);
@@ -210,51 +210,33 @@ function StarSystem() {
 				translate(x, y);
 				noStroke();
 				fill(0, 93, 255);
-				ellipse(cos(this.planets[i].deg) * 1.5, sin(this.planets[i].deg) * 1.5, 0.1, 0.1);
+				ellipse(cos(this.planets[i].deg) * star.rad, sin(this.planets[i].deg) * star.rad, 0.1, 0.1);
+				pop();
+				push();
+				noFill();
+				strokeWeight(0.1);
+				stroke(255);
+				ellipse(0, 0, 1.5, 1.5);
+
 				pop();
 			}
 		}
-		// for (let i = 0; i < this.planets.length; i++) {
-		// 	this.planets[i].deg++;
-		// 	let star = this.system[this.planets[i].id];
-
-		// 	translate(cos(star.deg) * star.dist, sin(star.deg) * star.dist);
-		// 	push();
-		// 	// noFill();
-		// 	// stroke(255);
-		// 	// strokeWeight(0.1);
-		// 	noStroke();
-		// 	fill(0, 93, 255);
-		// 	ellipse(0, 0, 1, 1);
-		// 	pop();
-
-		// 	this.planets[i].x = cos(this.planets[i].deg) * 1.5;
-		// 	this.planets[i].y = sin(this.planets[i].deg) * 1.5;
-
-		// 	// push();
-
-		// 	// fill(150);
-		// 	// noStroke();
-		// 	// ellipse(this.planets[i].x, this.planets[i].y, 0.5, 0.5);
-		// 	// pop();
-		// 	// translate(0, 0);
-		// }
 	};
 }
 
 
-function Presenter() {
-	// this.zoom = 1;
-	// this.toggled = false;
-	// this.swithState = () => {
-	// 	this.zoom = this.toggled ? 0.1 : 1;
-	// };
+// function Presenter() {
+// 	// this.zoom = 1;
+// 	// this.toggled = false;
+// 	// this.swithState = () => {
+// 	// 	this.zoom = this.toggled ? 0.1 : 1;
+// 	// };
 
-}
+// }
 
-// Math.prototype.degrees = function(radians) {
-// 	return radians / (Math.PI / 180);
-// };
+// // Math.prototype.degrees = function(radians) {
+// // 	return radians / (Math.PI / 180);
+// // };
 
 leftnav.addEventListener('click', () => {
 	index = index > 0 ? index - 1 : space.system.length - 1;
