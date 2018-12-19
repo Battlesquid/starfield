@@ -1,0 +1,99 @@
+/
+<!DOCTYPT html>
+<html>
+
+<head>
+	<title>StarSystem</title>
+	<script src="//console.re/connector.js" data-channel="c0b6-10e2-89a2" id="consolerescript"></script>
+	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
+	<link rel="stylesheet" href="lib/style.css">
+	<script src="lib/p5.min.js"></script>
+	<script src="lib/p5.play.js"></script>
+</head>
+
+<body>
+	<div id="start">
+		<div id="panel">
+			<div>
+				<h1 id="title">Star Project</h1>
+				<h6 id="subtitle">Mayowa Esan</h6>
+			</div>
+		</div>
+	</div>
+	<div id="start-btn">Start</div>
+
+	<div id="ui-main">
+		<div id="ui">
+			<div id="left" class="btn"></div>
+			<div id="right" class="btn"></div>
+		</div>
+
+		<div id="leftinfo">
+			<div class="field">
+				<div class="lbl">Star Name</div>
+				<div id="name" class="val"></div>
+			</div>
+			<div class="field">
+				<div class="lbl">Parallax</div>
+				<div id="plax" class="val"></div>
+			</div>
+			<div class="field">
+				<div class="lbl">Apparent Magnitude</div>
+				<div id="appmag" class="val"></div>
+			</div>
+			<div class="field">
+				<div class="lbl">Peak Wavelength (nm)</div>
+				<div id="wave" class="val"></div>
+			</div>
+		</div>
+		<div id="rightinfo">
+			<div class="field">
+				<div class="lbl">Distance (ly)</div>
+				<div id="distance" class="val"></div>
+			</div>
+			<div class="field">
+				<div class="lbl">Luminosity</div>
+				<div id="lumin" class="val"></div>
+			</div>
+			<div class="field">
+				<div class="lbl">Temperature (K)</div>
+				<div id="temp" class="val"></div>
+			</div>
+			<div class="field">
+				<div class="lbl">Radius</div>
+				<div id="radius" class="val"></div>
+			</div>
+			<div class="field">
+				<div class="lbl">Mass</div>
+				<div id="mass" class="val"></div>
+			</div>
+			<div class="field">
+				<div class="lbl">Classification</div>
+				<div id="classification" class="val"></div>
+			</div>
+		</div>
+		<div id="plan">
+			<div class="field">
+				<div class="lbl">Orbital Radius</div>
+				<div id="orbrad" class="val"></div>
+			</div>
+			<div class="field">
+				<div class="lbl">Mass</div>
+				<div id="pmass" class="val"></div>
+			</div>
+			<div class="field">
+				<div class="lbl">Radius</div>
+				<div id="prad" class="val"></div>
+			</div>
+			<div class="field">
+				<div class="lbl">Density</div>
+				<div id="dens" class="val"></div>
+			</div>
+		</div>
+
+	</div>
+
+	<script src="app/system.js"></script>
+</body>
+
+</html>
