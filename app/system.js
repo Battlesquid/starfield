@@ -25,8 +25,8 @@ let index = 0;
 let started = false;
 
 function setup() {
+	createCanvas(window.innerWidth, window.innerHeight);
 	// createCanvas(window.innerWidth, window.innerHeight);
-	createCanvas(windowWidth, windowHeight);
 	//parallax, wavelength, apparent mag, distance, luminosity, temperature
 
 	space.addStar("Aidormian", 0.183, 366, 1.08, 17.80, 9.454, 7926, 1.647, "Main Sequence", true, 1.021, 4.404, 1.882, 3.641);
@@ -88,8 +88,12 @@ function draw() {
 	// ellipse(0, 0, 100, 100);
 	// pop();
 	pop();
-	camera.zoom = lerp(camera.zoom, 35 / space.system[index].rad, 0.1);
-	space.focusOnStar(space.system[index]);
+	if (!space.drag) {
+		camera.zoom = lerp(camera.zoom, 35 / space.system[index].rad, 0.1);
+		space.focusOnStar(space.system[index]);
+	}
+
+
 	space.updateSystem();
 }
 
@@ -98,6 +102,7 @@ function StarSystem() {
 	this.system = [];
 	this.planets = {};
 	this.currentStar = null;
+	this.drag = false;
 	//parallax, wavelength, apparent mag, distance, luminosity, temperature
 	this.addStar = (n, p, w, a, d, l, t, r, classif, planet, orbrad, me, re, dens) => {
 		this.system.push({
@@ -135,21 +140,15 @@ function StarSystem() {
 	this.focusOnStar = (star) => {
 		let x = cos(star.deg) * star.dist;
 		let y = sin(star.deg) * star.dist;
-
-		// let x = cos(star.deg) * star.scaledist;
-		// let y = sin(star.deg) * star.scaledist;
 		camera.position.x = lerp(camera.position.x, x, 0.1);
 		camera.position.y = lerp(camera.position.y, y, 0.1);
+
 	};
 
 	this.addPlanet = (index, orbrad, me, re, dens) => {
 		let star = this.system[index];
 		let x = cos(star.deg) * star.dist;
 		let y = sin(star.deg) * star.dist;
-		// this.planets.push({
-		// 	deg: star.deg,
-		// 	id: this.system.length - 1
-		// });
 		this.planets[index] = {
 			deg: star.deg,
 			speed: random(),
@@ -159,7 +158,6 @@ function StarSystem() {
 			dens: dens
 		};
 		console.re.log(this.planets);
-		// alert(this.system[this.planets[this.system.length - 1].id].name);
 	};
 
 	this.updateInfo = (e) => {
@@ -171,7 +169,7 @@ function StarSystem() {
 		temp.innerHTML = this.system[e].temp;
 		wave.innerHTML = this.system[e].wave;
 		radius.innerHTML = this.system[e].rad;
-		mass.innerHTML = this.system[e].mass;
+		mass.innerHTML = this.system[e].mass.toString().substr(0, 4);
 		classify.innerHTML = this.system[e].classify;
 	};
 
@@ -212,12 +210,12 @@ function StarSystem() {
 				fill(0, 93, 255);
 				ellipse(cos(this.planets[i].deg) * star.rad, sin(this.planets[i].deg) * star.rad, 0.1, 0.1);
 				pop();
+
 				push();
 				noFill();
 				strokeWeight(0.1);
 				stroke(255);
 				ellipse(0, 0, 1.5, 1.5);
-
 				pop();
 			}
 		}
@@ -261,4 +259,25 @@ startbtn.addEventListener('click', () => {
 	document.getElementById('start').style.display = 'none';
 	document.getElementById('start-btn').style.display = 'none';
 	started = true;
-})
+});
+
+document.addEventListener('mousedown', (e) => {
+	space.drag = true;
+	let displacex = 0,
+		displacey = 0;
+	let prevX = camera.mouseX,
+		prevY = camera.mouseY;
+
+	// translate(windowWidth / 2, windowHeight / 2);
+	// camera.position.x += camera.mouseX;
+	// camera.position.y += camera.mouseY;
+	// camera.zoom = 1;
+	// if (e.target.id !== "start-btn" && started) {
+	// 	alert(camera.mouseX);
+	// }
+});
+
+document.addEventListener('mouseup', () => {
+	space.drag = false;
+	// scale(
+});
