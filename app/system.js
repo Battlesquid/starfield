@@ -157,7 +157,6 @@ function StarSystem() {
 			re: re,
 			dens: dens
 		};
-		console.re.log(this.planets);
 	};
 
 	this.updateInfo = (e) => {
